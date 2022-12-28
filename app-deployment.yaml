@@ -19,21 +19,33 @@ spec:
             - containerPort: 8081
           env:   # Setting Enviornmental Variables
             - name: DB_HOST   # Setting Database host address from configMap
-              value: mysql
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: host
 
             - name: DB_NAME  # Setting Database name from configMap
-              value: k8_db
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: dbName
 
             - name: DB_USERNAME  # Setting Database username from Secret
-              value: root
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: username
 
             - name: DB_PASSWORD # Setting Database password from Secret
-              value: 123456Aa
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: password
 
 ---
 
 apiVersion: v1 # Kubernetes API version
-kind: Service # Kubernetes resource kind we are creating
+kind: Service # Kubernetes' resource kind we are creating
 metadata: # Metadata of the resource kind we are creating
   name: springboot-crud-svc
 spec:

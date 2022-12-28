@@ -1,4 +1,4 @@
-package com.rohit.crud.entity;
+package com.rohit.crud.employee;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

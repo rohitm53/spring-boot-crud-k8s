@@ -1,4 +1,4 @@
-package com.rohit.crud.entity;
+package com.rohit.crud.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
