@@ -32,11 +32,16 @@ spec:
         - image: mysql:5.6
           name: mysql
           env:
-            - name: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD  # Setting Database password from a 'secrets'
               valueFrom:
                 secretKeyRef:
                   name: mysql-secrets
                   key: password
+            - name: MYSQL_DATABASE # Setting Database Name from a 'ConfigMap'
+              valueFrom :
+                configMapKeyRef :
+                  name: db-config
+                  key: dbName
           ports:
             - containerPort: 3306
               name: mysql
